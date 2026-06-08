@@ -3,12 +3,18 @@ import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
 import taskRoutes from "./routes/taskRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
 connectDB();
 
 const app = express();
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {

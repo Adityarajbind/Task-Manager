@@ -1,14 +1,7 @@
-import React from "react";
-import AuthBackground from "./components/AuthBackground";
-const App = () => {
-  return (
-    <>
-        {/* Background */}
-        <AuthBackground/>
+import AppRoutes from "./routes/AppRoutes";
 
-
-    </>
-  );
-};
+function App() {
+  return <AppRoutes />;
+}
 
 export default App;

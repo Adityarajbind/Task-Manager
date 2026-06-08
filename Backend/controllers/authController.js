@@ -31,8 +31,10 @@ export const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    const token = generateToken(user._id);
 
     res.status(201).json({
+      token,
       message: "User registered successfully",
       user: {
         id: user._id,
@@ -46,7 +48,6 @@ export const registerUser = async (req, res) => {
     });
   }
 };
-
 
 export const loginUser = async (req, res) => {
   try {
@@ -66,10 +67,7 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    const isMatch = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(400).json({

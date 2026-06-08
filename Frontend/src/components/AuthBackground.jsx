@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 const cards = [
-  { title: "Design System",time:"Today", progress: 75, position: "top-16 left-10" },
-  { title: "API Setup",time:"Tommorow", progress: 40, position: "top-65 left-2" },
-  { title: "Documentation", time:"Tomorrow", progress: 90, position: "bottom-2 left-8" },
-  { title: "Review PR", time:"Today", progress: 20, position: "top-20 right-8" },
-  { title: "User Testing", time:"This Week", progress: 55, position: "top-70 right-4" },
-  { title: "Production", time:"Next Month", progress: 60, position: "bottom-7 right-8" },
+  { title: "Design System",time:"Today", progress: 75, position: "top-16 left-12" },
+  { title: "API Setup",time:"Tommorow", progress: 40, position: "top-65 left-4" },
+  { title: "Documentation", time:"Tomorrow", progress: 90, position: "bottom-2 left-10" },
+  { title: "Review PR", time:"Today", progress: 20, position: "top-20 right-10" },
+  { title: "User Testing", time:"This Week", progress: 55, position: "top-70 right-6" },
+  { title: "Production", time:"Next Month", progress: 60, position: "bottom-7 right-10" },
 ];
 
 export default function AuthBackground() {
