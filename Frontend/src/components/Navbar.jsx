@@ -1,22 +1,27 @@
-import { Search, User2 } from "lucide-react";
+import { Search, User2, MenuIcon } from "lucide-react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const Navbar = ({searchTerm,setSearchTerm}) => {
+const Navbar = ({ searchTerm, setSearchTerm, setSidebarOpen }) => {
   const { user } = useContext(AuthContext);
   console.log(user);
-  
+
   return (
     <header className=" border-b border-white/10 backdrop-blur-xl bg-black/20">
       <div className="w-full mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
         {/* Logo */}
-        <div>
-          <h1 className="text-2xl font-bold text-white">ALL TASKS</h1>
+        <div className="flex gap-2 justify-center items-center">
+          <button onClick={() => setSidebarOpen(true)} className="lg:hidden invert-100">
+            <MenuIcon size={25} />
+          </button>
+          <div>
+            <h1 className="text-2xl max-sm:text-[16px] font-bold text-white">ALL TASKS</h1>
+          </div>
         </div>
 
         {/* Search */}
         <div className="flex  gap-2 self-end items-center justify-end">
-          <div className="relative ">
+          <div className="relative max-sm:hidden  ">
             <Search
               size={18}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"

@@ -41,7 +41,7 @@ const Login = () => {
       <AuthBackground />
       <div className="min-h-screen flex items-center justify-center relative overflow-hidden px-4">
         {/* Glass Card */}
-        <div className="relative w-full max-w-md rounded-3xl border-2 border-white/10 bg-white/4 backdrop-blur-2xl shadow-[0_0_50px_rgba(0,0,0,0.4)] p-8">
+        <div className="relative w-full max-w-md max-md:max-w-sm rounded-3xl border-2 border-white/10 bg-white/4 backdrop-blur-2xl shadow-[0_0_50px_rgba(0,0,0,0.4)] p-8 max-[400px]:p-4">
           {/* Heading */}
           <h1 className="text-4xl font-bold text-white mb-3 text-center">
             Welcome Back

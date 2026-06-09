@@ -8,6 +8,10 @@ const cards = [
   { title: "User Testing", time:"This Week", progress: 55, position: "top-70 right-6" },
   { title: "Production", time:"Next Month", progress: 60, position: "bottom-7 right-10" },
 ];
+const gridCells = Array.from(
+  { length: 56 },
+  (_, i) => i
+);
 
 export default function AuthBackground() {
 
@@ -22,25 +26,25 @@ export default function AuthBackground() {
       />
       {/* Animated Mesh Background */}
       <div className="absolute inset-0">
-        <div className="absolute left-[-10%] top-[-20%] h-[700px] w-[700px] rounded-full bg-violet-700/30 blur-[180px] animate-[var(--animate-blob)]" />
+        <div className="absolute left-[-10%] top-[-20%] h-175 w-175 rounded-full bg-violet-700/30 blur-[120px] animate-blob" />
 
-        <div className="absolute right-[-10%] bottom-[-20%] h-[700px] w-[700px] rounded-full bg-blue-600/20 blur-[180px] animate-[var(--animate-blob)]" />
+        <div className="absolute right-[-10%] bottom-[-20%] h-175 w-175 rounded-full bg-blue-600/20 blur-[120px] animate-blob" />
 
-        <div className="absolute left-[40%] top-[40%] h-[400px] w-[400px] rounded-full bg-purple-500/10 blur-[120px] animate-[var(--animate-blob)]" />
+        <div className="absolute left-[40%] top-[40%] h-100px w-100px rounded-full bg-purple-500/10 blur-[120px] animate-blob" />
       </div>
 
 
 
       {/* Center Spotlight */}
-      <div className="absolute left-1/2 top-1/2 h-[850px] w-[850px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[180px]" />
+      <div className="absolute left-1/2 top-1/2 h-212.5 w-212.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[120px]" />
 
       {/* Bento Grid */}
       <div className="absolute inset-0 -z-1">
         <div className="grid h-full w-full grid-cols-8 gap-2">
-          {Array.from({ length: 56 }).map((_, i) => (
+          {gridCells.map((_, i) => (
             <div
               key={i}
-              className="relative overflow-hidden rounded-md border border-white/[0.03] bg-white/[0.015] backdrop-blur-sm"
+              className="relative overflow-hidden rounded-md border border-white/3 bg-white/1.5 backdrop-blur-sm"
             >
             </div>
           ))}
@@ -53,15 +57,16 @@ export default function AuthBackground() {
           key={index}
           className={`
             absolute
+            max-md:hidden
             ${card.position}
             w-52
             rounded-[20px]
             border
             border-violet-400/10
-            bg-white/[0.04]
-            backdrop-blur-2xl
+            bg-white/4
+            backdrop-blur-md
             shadow-[0_8px_40px_rgba(0,0,0,0.4)]
-            animate-[var(--animate-float)]
+            animate-float
             p-4
           `}
           style={{
@@ -70,7 +75,7 @@ export default function AuthBackground() {
           }}
         >
           {/* Card Glow */}
-          <div className="absolute inset-0 rounded-[24px] bg-gradient-to-br from-violet-500/5 to-blue-500/5" />
+          <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-violet-500/5 to-blue-500/5" />
 
           <div className="relative">
             <div className="mb-2 flex items-center justify-between">
@@ -93,7 +98,7 @@ export default function AuthBackground() {
 
               <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-violet-500 to-blue-500"
+                  className="h-full rounded-full bg-linear-to-r from-violet-500 to-blue-500"
                   style={{
                     width: `${card.progress}%`,
                   }}

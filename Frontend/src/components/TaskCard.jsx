@@ -16,11 +16,11 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleStatus, HandleStared }) => {
       {/* Header */}
       <div className="flex justify-between items-start mb-5">
         <div>
-          <h3 className="text-lg font-semibold text-white">{task.title}</h3>
+          <h3 className="text-lg max-max-md:text-sm font-semibold text-white">{task.title}</h3>
 
           <div className="mt-2">
             <p
-              className={`text-sm text-gray-400 ${
+              className={`text-sm max-max-md:text-xs text-gray-400 ${
                 expanded ? "" : "line-clamp-2"
               }`}
             >
@@ -40,7 +40,7 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleStatus, HandleStared }) => {
 
         <button
           onClick={() => HandleStared(task)}
-          className={`h-10 w-10 p-3 cursor-pointer rounded-xl bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center ${
+          className={`h-10 w-10 max-md:h-7 max-md:w-7  cursor-pointer rounded-xl max-md:rounded-md bg-white/5 hover:bg-white/10 text-gray-400 flex items-center justify-center ${
             task.isImportant ? "text-yellow-400" : "text-gray-400"
           }`}
         >
@@ -57,7 +57,7 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleStatus, HandleStared }) => {
         <div className="flex items-center justify-between">
           <button
             onClick={() => onToggleStatus(task)}
-            className={`px-3 py-2 rounded-xl text-sm flex cursor-pointer items-center gap-2 ${
+            className={`px-3 py-2 rounded-xl text-sm max-md:text-xs max-md:rounded-sm max-md:px-1.5 max-md:py-1 flex cursor-pointer items-center gap-2 ${
               task.status === "completed"
                 ? "bg-green-500/20 text-green-400"
                 : "bg-yellow-500/20 text-yellow-400"
@@ -72,14 +72,14 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleStatus, HandleStared }) => {
               onClick={() => {
                 onEdit(task);
               }}
-              className="h-10 w-10 rounded-xl bg-white/5 hover:bg-white/10 text-blue-400 flex items-center justify-center cursor-pointer"
+              className="h-10 w-10 rounded-xl max-md:h-7 max-md:w-7 max-md:rounded-md bg-white/5 hover:bg-white/10 text-blue-400 flex items-center justify-center cursor-pointer"
             >
               <Pencil size={16} />
             </button>
 
             <button
               onClick={() => onDelete(task._id)}
-              className="h-10 w-10 rounded-xl bg-white/5 hover:bg-white/10 text-red-400 flex items-center justify-center cursor-pointer"
+              className="h-10 w-10 rounded-xl max-md:h-7 max-md:w-7 max-md:rounded-md bg-white/5 hover:bg-white/10 text-red-400 flex items-center justify-center cursor-pointer"
             >
               <Trash2 size={16} />
             </button>
@@ -87,7 +87,7 @@ const TaskCard = ({ task, onEdit, onDelete, onToggleStatus, HandleStared }) => {
         </div>
 
         {/* Bottom timestamp */}
-        <div className="mt-4 pt-4 border-t border-white/10 flex items-center gap-2 text-xs text-gray-500">
+        <div className="mt-4 max-md:mt-2 pt-4 max-md:pt-2 border-t border-white/10 flex items-center gap-2 text-xs text-gray-500">
           <Clock3 size={14} />
           Created at {formattedTime}
         </div>

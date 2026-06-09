@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutGrid, Plus } from "lucide-react";
+import { LayoutGrid, Plus,StretchHorizontal } from "lucide-react";
 import { useState, useEffect, useContext } from "react";
 import API from "../services/taskService";
 import Background from "../components/Background";
@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [Layout, setLayout] = useState("grid3");
   const [sortOrder, setSortOrder] = useState("latest");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const fetchTasks = async () => {
     try {
       const res = await API.get("/");
@@ -118,7 +119,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <Background />
+      <div className="">
+        <Background />
+      </div>
       <TaskModal
         open={showModal}
         onClose={() => {
@@ -128,7 +131,7 @@ const Dashboard = () => {
         editingTask={editingTask}
         onSubmit={handleTaskSubmit}
       />
-      <div className="relative z-10 min-h-screen w-full p-4">
+      <div className="relative z-10 min-h-screen w-full p-4 max-[425px]:p-0">
         <div className="relative w-full h-full rounded-xl border-2 border-white/10 bg-white/4 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.4)] flex">
           <div className="SideBar ">
             <Sidebar
@@ -136,17 +139,23 @@ const Dashboard = () => {
               activeFilter={activeFilter}
               setActiveFilter={setActiveFilter}
               onlogout={logout}
+              sidebarOpen={sidebarOpen}
+              setSidebarOpen={setSidebarOpen}
             />
           </div>
           <div className="Main-Content w-full ">
-            <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <Navbar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              setSidebarOpen={setSidebarOpen}
+            />
             <div className="w-full flex justify-between items-center text-gray-200 p-2">
               <div className=" border border-white/10 bg-black/20 backdrop-blur-xl flex rounded-lg">
-                <div className="px-4 py-2 rounded-l-lg bg-black/20">
+                <div className="px-4 py-2 max-sm:hidden rounded-l-lg bg-black/20">
                   Sort By
                 </div>
                 <select
-                  className="text-gray-400 px-2 pr-5 outline-none cursor-pointer"
+                  className="text-gray-400 px-2 pr-5 max-sm:px-1 max-sm:py-2 max-sm:pr-1 outline-none cursor-pointer"
                   value={sortOrder}
                   onChange={(e) => setSortOrder(e.target.value)}
                 >
@@ -160,9 +169,9 @@ const Dashboard = () => {
               </div>
 
               <div className=" flex gap-2">
-                <div className="flex justify-center items-center border border-white/10 bg-black/20 backdrop-blur-xl rounded-md gap- p-1">
+                <div className="flex justify-center items-center border border-white/10 bg-black/20 backdrop-blur-xl rounded-md max-[375px]:hidden p-1">
                   <button
-                    className={`p-1.5 ${Layout === "grid3" ? "bg-black rounded-md" : "cursor-pointer"}`}
+                    className={`p-1.5 max-sm:hidden ${Layout === "grid3" ? "bg-black rounded-md" : "cursor-pointer"}`}
                     onClick={() => setLayout("grid3")}
                   >
                     <img src="/grid-3x3.svg" className="w-3 h-3 invert-100" />
@@ -173,13 +182,20 @@ const Dashboard = () => {
                   >
                     <LayoutGrid size={15} />
                   </button>
+                  {/* layout gird 1 col */}
+                  <button
+                    className={`p-1.5 sm:hidden ${Layout === "grid3" ? "bg-black rounded-md" : "cursor-pointer"}`}
+                    onClick={() => setLayout("grid3")}
+                  >
+                    <StretchHorizontal size={15}/>
+                  </button>
                 </div>
                 <button
                   className="cursor-pointer flex justify-center items-center gap-2 border border-white/10 bg-black/10 p-2 rounded-md"
                   onClick={handleCreateClick}
                 >
                   <Plus size={15} />
-                  Add New Task
+                  Add <span>New</span> Task
                 </button>
               </div>
             </div>
