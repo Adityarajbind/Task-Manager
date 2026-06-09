@@ -7,6 +7,7 @@ import {
   updateTask,
   deleteTask,
   toggleTaskStatus,
+  toggleIsImportant,
 } from "../controllers/taskController.js";
 
 const router = express.Router();
@@ -19,10 +20,7 @@ router.put("/:id", protect, updateTask);
 
 router.delete("/:id", protect, deleteTask);
 
-router.patch(
-  "/:id/status",
-  protect,
-  toggleTaskStatus
-);
+router.patch("/:id/status", protect, toggleTaskStatus);
+router.patch("/:id/isImportant", protect, toggleIsImportant);
 
 export default router;

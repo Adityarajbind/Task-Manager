@@ -2,9 +2,10 @@ import { Search, User2 } from "lucide-react";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-const Navbar = () => {
-  const { logout } = useContext(AuthContext);
-
+const Navbar = ({searchTerm,setSearchTerm}) => {
+  const { user } = useContext(AuthContext);
+  console.log(user);
+  
   return (
     <header className=" border-b border-white/10 backdrop-blur-xl bg-black/20">
       <div className="w-full mx-auto px-4 md:px-8 py-3 flex items-center justify-between gap-4">
@@ -23,6 +24,8 @@ const Navbar = () => {
 
             <input
               type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search tasks..."
               className=" h-10 rounded-lg bg-white/5 border border-white/10 pl-11 pr-4 text-white placeholder:text-gray-500 outline-none focus:border-purple-500/50"
             />
@@ -30,7 +33,7 @@ const Navbar = () => {
           <div className="User">
             <div className="h-10 px-2 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center gap-2 text-gray-300">
               <User2 size={18} />
-              <span>UserName</span>
+              <span>{user.name}</span>
             </div>
           </div>
         </div>

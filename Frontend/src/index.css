@@ -5,6 +5,18 @@
   --animate-float: float 8s ease-in-out infinite;
   --animate-blob: blob 15s infinite;
 }
+.scrollbar-thin-black::-webkit-scrollbar {
+  width: 4px; /* Makes the scrollbar thin in Y axis */
+}
+
+.scrollbar-thin-black::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.scrollbar-thin-black::-webkit-scrollbar-thumb {
+  background-color: #404040;
+  border-radius: 2px;
+}
 
 @keyframes float {
   0%,100% {

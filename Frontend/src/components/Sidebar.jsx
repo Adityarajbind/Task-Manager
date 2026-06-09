@@ -6,12 +6,18 @@ import {
   Star,
   LogOut,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ onAddTask, activeFilter, setActiveFilter, onlogout }) => {
+  const navigate = useNavigate();
+
   return (
     <aside className="w-64 h-screen border-r border-white/10 bg-black/20 backdrop-blur-xl flex flex-col p-4">
       {/* Add Task */}
-      <button className="h-14 border border-dashed border-white/20 rounded-xl text-white hover:border-purple-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 cursor-pointer">
+      <button
+        className="h-14 border border-dashed border-white/20 rounded-xl text-white hover:border-purple-500/50 hover:bg-white/5 transition flex items-center justify-center gap-2 cursor-pointer"
+        onClick={onAddTask}
+      >
         <Plus size={18} />
         Add Task
       </button>
@@ -20,28 +26,40 @@ const Sidebar = () => {
       <div className="mt-8 pt-6 border-t border-white/10">
         <ul className="space-y-2">
           <li>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 text-white">
+            <button
+              onClick={() => setActiveFilter("all")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl ${activeFilter === "all" ? "bg-white/5 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"} transition`}
+            >
               <ListTodo size={18} />
               All Tasks
             </button>
           </li>
 
           <li>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition">
+            <button
+              onClick={() => setActiveFilter("pending")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition ${activeFilter === "pending" ? "bg-white/5 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"} `}
+            >
               <Clock3 size={18} />
               Pending
             </button>
           </li>
 
           <li>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition">
+            <button
+              onClick={() => setActiveFilter("completed")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition ${activeFilter === "completed" ? "bg-white/5 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"} `}
+            >
               <CheckCircle2 size={18} />
               Completed
             </button>
           </li>
 
           <li>
-            <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:bg-white/5 hover:text-white transition">
+            <button
+              onClick={() => setActiveFilter("important")}
+              className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition ${activeFilter === "important" ? "bg-white/5 text-white" : "text-gray-400 hover:bg-white/5 hover:text-white"} `}
+            >
               <Star size={18} />
               Important
             </button>
@@ -51,7 +69,13 @@ const Sidebar = () => {
 
       {/* Bottom */}
       <div className="mt-auto pt-6 border-t border-white/10">
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition">
+        <button
+          className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10 transition"
+          onClick={()=>{
+            onlogout()
+            navigate("/login")
+          }}
+        >
           <LogOut size={18} />
           Logout
         </button>

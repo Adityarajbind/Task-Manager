@@ -103,6 +103,34 @@ export const toggleTaskStatus = async (req, res) => {
 
     res.json(task);
   } catch (error) {
+    console.log(error);
+    
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+export const toggleIsImportant = async (req, res) => {
+  try {
+    const task = await Task.findOne({
+      _id: req.params.id,
+      userId: req.user._id,
+    });
+
+    if (!task) {
+      return res.status(404).json({
+        message: "Task not found",
+      });
+    }
+
+    task.isImportant = task.isImportant ? false : true;
+
+    await task.save();
+
+    res.json(task);
+  } catch (error) {
+    console.log(error);
+    
     res.status(500).json({
       message: error.message,
     });
