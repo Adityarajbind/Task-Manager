@@ -33,7 +33,7 @@ const Sidebar = ({
         />
       )}
       <aside
-        className={` fixed lg:relative top-0 left-0 z-50 h-full w-64 border-r border-white/10 bg-black/20 backdrop-blur-md flex flex-col p-4 rounded-l-xl transition-transform duration-300 ${sidebarOpen ? "translate-x-0 bg-black/80 " : "-translate-x-[110%] "} lg:translate-x-0
+        className={` fixed lg:relative top-0 left-0 z-50 h-full w-64 border-r border-white/10 bg-black/20 backdrop-blur-md flex flex-col p-4 rounded-l-xl transition-transform duration-300 ${sidebarOpen ? "translate-x-0 bg-black/80 " : "translate-x-[-110%] "} lg:translate-x-0
   `}
       >
         {/* Add Task */}

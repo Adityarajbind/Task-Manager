@@ -1,5 +1,5 @@
 import React from "react";
-import { LayoutGrid, Plus,StretchHorizontal } from "lucide-react";
+import { LayoutGrid, Plus, StretchHorizontal } from "lucide-react";
 import { useState, useEffect, useContext } from "react";
 import API from "../services/taskService";
 import Background from "../components/Background";
@@ -187,7 +187,7 @@ const Dashboard = () => {
                     className={`p-1.5 sm:hidden ${Layout === "grid3" ? "bg-black rounded-md" : "cursor-pointer"}`}
                     onClick={() => setLayout("grid3")}
                   >
-                    <StretchHorizontal size={15}/>
+                    <StretchHorizontal size={15} />
                   </button>
                 </div>
                 <button
@@ -200,14 +200,18 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="overflow-y-scroll h-[80vh] scrollbar-thin-black">
-              <TaskBoard
-                tasks={displayedTasks}
-                Layout={Layout}
-                onEditTask={handleEditClick}
-                onDeleteTask={handleDeleteTask}
-                onToggleStatus={handleToggleStatus}
-                onToggleImportant={handleToggleImportant}
-              />
+              {tasks.length > 0 ? (
+                <TaskBoard
+                  tasks={displayedTasks}
+                  Layout={Layout}
+                  onEditTask={handleEditClick}
+                  onDeleteTask={handleDeleteTask}
+                  onToggleStatus={handleToggleStatus}
+                  onToggleImportant={handleToggleImportant}
+                />
+              ):(
+                <h1 className="text-center text-white text-6xl mt-10 max-sm:text-3xl">No Task Added</h1>
+              )}
             </div>
           </div>
         </div>

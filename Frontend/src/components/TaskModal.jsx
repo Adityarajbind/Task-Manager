@@ -95,7 +95,7 @@ const TaskModal = ({
 
             <button
               type="submit"
-              className="px-5 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium hover:scale-[1.02] transition cursor-pointer"
+              className="px-5 py-3 rounded-2xl bg-linear-to-r from-purple-600 to-blue-600 text-white font-medium hover:scale-[1.02] transition cursor-pointer"
             >
               {editingTask ? "Save Changes" : "Create Task"}
             </button>
