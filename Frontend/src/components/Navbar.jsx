@@ -4,7 +4,6 @@ import { AuthContext } from "../context/AuthContext";
 
 const Navbar = ({ searchTerm, setSearchTerm, setSidebarOpen }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   return (
     <header className=" border-b border-white/10 backdrop-blur-xl bg-black/20">
