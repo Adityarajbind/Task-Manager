@@ -12,7 +12,7 @@ connectDB();
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://adityaraj-task-manager.vercel.app/"]
+    origin: ["http://localhost:5173","https://adityaraj-task-manager.vercel.app"]
   })
 );
 app.use(express.json());
