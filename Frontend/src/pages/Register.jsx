@@ -1,6 +1,6 @@
 import React from "react";
 import AuthBackground from "../components/AuthBackground";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import API from "../services/authService";
@@ -13,7 +13,6 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +31,7 @@ const Register = () => {
         password,
       });
 
-      login(res.data.token);
+      login(res.data.token, res.data.user);
 
       navigate("/");
     } catch (error) {
