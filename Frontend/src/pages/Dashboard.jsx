@@ -20,13 +20,18 @@ const Dashboard = () => {
   const [sortOrder, setSortOrder] = useState("latest");
   const [searchTerm, setSearchTerm] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+
   const fetchTasks = async () => {
     try {
+      setLoading(true);
       const res = await API.get("/");
 
       setTasks(res.data);
     } catch (error) {
       console.error(error);
+    } finally{
+      setLoading(false)
     }
   };
   useEffect(() => {
@@ -66,6 +71,7 @@ const Dashboard = () => {
   const handleTaskSubmit = async (taskData) => {
     try {
       if (editingTask) {
+        setLoading(true)
         const res = await API.put(`/${editingTask._id}`, taskData);
 
         setTasks((prev) =>
@@ -81,6 +87,8 @@ const Dashboard = () => {
       setEditingTask(null);
     } catch (err) {
       console.log(err);
+    }finally{
+      setLoading(false)
     }
   };
   const handleCreateClick = () => {
@@ -130,6 +138,7 @@ const Dashboard = () => {
         }}
         editingTask={editingTask}
         onSubmit={handleTaskSubmit}
+        loading = {loading}
       />
       <div className="relative z-10 min-h-screen w-full p-4 max-[425px]:p-0">
         <div className="relative w-full h-full rounded-xl border-2 border-white/10 bg-white/4 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.4)] flex">
@@ -210,7 +219,17 @@ const Dashboard = () => {
                   onToggleImportant={handleToggleImportant}
                 />
               ):(
+            <div>
+              {loading ? (
+                <>
+                  <div className="w-20 h-20 mx-auto border-4 border-white/30 border-t-white text-center text-white text-6xl mt-10 max-sm:text-3xl rounded-full animate-spin" />
+                </>
+              ) : (
+                <>
                 <h1 className="text-center text-white text-6xl mt-10 max-sm:text-3xl">No Task Added</h1>
+                </>
+              )}
+            </div>
               )}
             </div>
           </div>
