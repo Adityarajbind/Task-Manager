@@ -8,6 +8,7 @@ import API from "../services/authService";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,13 +20,13 @@ const Login = () => {
     if (!email || !password) {
       return alert("Please fill all fields");
     }
-
+    setLoading(true);
     try {
       const res = await API.post("/login", {
         email,
         password,
       });
-      login(res.data.token,res.data.user);
+      login(res.data.token, res.data.user);
 
       navigate("/");
     } catch (error) {
@@ -117,10 +118,25 @@ const Login = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full  transition-all ease-in duration-200 h-14 rounded-full bg-linear-to-r from-purple-600 to-blue-600 text-white font-semibold text-lg hover:scale-[1.02] active:scale-[0.98] flex justify-center items-center gap-1 cursor-pointer"
+              disabled={loading}
+              className={`w-full h-14 mt-6 rounded-full text-white font-semibold text-lg transition-all flex justify-center items-center gap-3
+              ${
+                loading
+                  ? "bg-purple-700/60 cursor-not-allowed"
+                  : "bg-linear-to-r from-purple-600 to-blue-600 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+              }`}
             >
-              <span className="mb-1">Sign In</span>
-              <ArrowRight />
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Signing in...</span>
+                </>
+              ) : (
+                <>
+                  <span className="mb-1">Sign in</span>
+                  <ArrowRight />
+                </>
+              )}
             </button>
             <p className="text-center text-gray-400 text-sm">
               Don't have an account?{" "}

@@ -10,6 +10,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
@@ -23,6 +24,7 @@ const Register = () => {
     if (password.length < 6) {
       return alert("Password must be at least 6 characters");
     }
+    setLoading(true);
 
     try {
       const res = await API.post("/register", {
@@ -38,6 +40,8 @@ const Register = () => {
       console.error(error.response?.data || error);
 
       alert(error.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -137,10 +141,25 @@ const Register = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full h-14 mt-6 rounded-full bg-linear-to-r from-purple-600 to-blue-600 text-white font-semibold text-lg hover:scale-[1.02] active:scale-[0.98] transition-all flex justify-center items-center gap-1 cursor-pointer"
+              disabled={loading}
+              className={`w-full h-14 mt-6 rounded-full text-white font-semibold text-lg transition-all flex justify-center items-center gap-3
+              ${
+                  loading
+                  ? "bg-purple-700/60 cursor-not-allowed"
+                  : "bg-linear-to-r from-purple-600 to-blue-600 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                }`}
             >
-              <span className="mb-1">Create Account</span>
-              <ArrowRight />
+              {loading ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Creating Account...</span>
+                </>
+              ) : (
+                <>
+                  <span className="mb-1">Create Account</span>
+                  <ArrowRight />
+                </>
+              )}
             </button>
 
             {/* Sign In Link */}
