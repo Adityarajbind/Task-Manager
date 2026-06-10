@@ -4,23 +4,20 @@ A modern full-stack Task Management application built with the MERN stack. Users
 
 ---
 
-## 🚀 Live Demo
+## Live Demo
 
-Frontend: https://your-vercel-app.vercel.app
-
-Backend API: https://your-render-app.onrender.com
+Frontend: [https://adityaraj-task-manager.vercel.app/](https://adityaraj-task-manager.vercel.app/)
 
 ---
 
-## 📸 Screenshot
+## Screenshot
 
-![Task Manager Dashboard](./screenshot.png)
-
-> Replace `screenshot.png` with your project screenshot and place it in the root directory.
+![Task Manager Login](./Login.png)
+![Task Manager Dashboard](./Dashboard.png)
 
 ---
 
-## ✨ Features
+## Features
 
 ### Authentication
 
@@ -52,7 +49,7 @@ Backend API: https://your-render-app.onrender.com
 
 ### User Interface
 
-* Modern Glassmorphism Design
+* Glassmorphism Design
 * Responsive Layout
 * Mobile Sidebar Navigation
 * Dashboard Analytics Layout
@@ -117,7 +114,7 @@ task-manager/
 ### Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/task-manager.git
+git clone https://github.com/Adityarajbind/task-manager.git
 cd task-manager
 ```
 
@@ -137,7 +134,7 @@ Create a `.env` file:
 ```env
 PORT=5000
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+JWT_SECRET=your_jwt_secret_key
 ```
 
 Start backend:
@@ -205,20 +202,7 @@ http://localhost:5173
 
 ---
 
-## Future Improvements
-
-* Task Categories
-* Due Dates
-* Drag & Drop Kanban Board
-* Dark / Light Theme Toggle
-* User Profiles
-* Task Priority Levels
-* Email Notifications
-
----
-
 ## Author
 
-Aditya Raj
-
+Adityaraj Bind
 Built as a MERN Stack project to practice full-stack development, authentication, REST APIs, and modern React application architecture.
