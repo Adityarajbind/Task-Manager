@@ -100,19 +100,19 @@ const TaskModal = ({
             <button
               type="submit"
               disabled={loading}
-              className={`px-5 py-3 rounded-2xl bg-linear-to-r from-purple-600 to-blue-600 text-white font-medium hover:scale-[1.02] cursor-pointer transition-all flex justify-center items-center 
-              ${
-                loading
-                  ? "bg-purple-700/60 cursor-not-allowed"
-                  : "bg-linear-to-r from-purple-600 to-blue-600 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-              }`}
+              className={`px-5 py-3 rounded-2xl text-white font-medium transition-all flex justify-center items-center min-w-[140px]
+  ${
+    loading
+      ? "bg-purple-700/60 cursor-not-allowed"
+      : "bg-linear-to-r from-purple-600 to-blue-600 hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+  }`}
             >
               {loading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                </>
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              ) : editingTask ? (
+                "Save Changes"
               ) : (
-                <>{editingTask ? "Save Changes" : "Create Task"}</>
+                "Create Task"
               )}
             </button>
           </div>

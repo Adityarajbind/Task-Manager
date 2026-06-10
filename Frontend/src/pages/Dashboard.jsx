@@ -69,9 +69,9 @@ const Dashboard = () => {
   });
 
   const handleTaskSubmit = async (taskData) => {
+    setLoading(true)
     try {
       if (editingTask) {
-        setLoading(true)
         const res = await API.put(`/${editingTask._id}`, taskData);
 
         setTasks((prev) =>
