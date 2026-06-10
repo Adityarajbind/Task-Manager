@@ -25,7 +25,6 @@ const Login = () => {
         email,
         password,
       });
-      console.log(res.data.user)
       login(res.data.token,res.data.user);
 
       navigate("/");
